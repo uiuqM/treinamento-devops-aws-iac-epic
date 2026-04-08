@@ -1,0 +1,60 @@
+site_name: Treinamento DevOps AWS IaC
+site_description: DevOps e Infraestrutura como Código na AWS
+site_author: uiuqM
+repo_url: https://github.com/uiuqM/treinamento-devops-aws-iac-epic
+repo_name: treinamento-devops-aws-iac-epic
+
+theme:
+  name: material
+  language: pt
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Início Rápido: getting-started.md
+  - AWS:
+    - Visão Geral: aws/overview.md
+    - Serviços Principais: aws/core-services.md
+  - Infraestrutura como Código:
+    - Visão Geral: iac/overview.md
+    - Terraform: iac/terraform.md
+    - AWS CDK: iac/cdk.md
+  - DevOps:
+    - Visão Geral: devops/overview.md
+    - CI/CD: devops/cicd.md
