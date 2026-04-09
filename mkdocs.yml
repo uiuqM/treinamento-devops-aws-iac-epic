@@ -46,6 +46,6 @@ markdown_extensions:
       permalink: true
 
 nav:
-  - Home: index.md
+  - Home: apresentacao.md
   - Ementa: Plano de Ensino Iac AWS.md
-  - Apresentacao e introducao: apresentacao.md
+  - encontro-01: encontro-01.md
