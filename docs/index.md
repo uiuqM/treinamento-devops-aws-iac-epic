@@ -5,7 +5,8 @@
 
 ## Instrutor
 
-**Wilque Muriel do Nascimento Coelho**  
+**Wilque Muriel do Nascimento Coelho**
+[Linkedin](https://br.linkedin.com/in/wilque-muriel)
 
 ---
 
