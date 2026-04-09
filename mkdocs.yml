@@ -1,7 +1,7 @@
 site_name: Treinamento DevOps AWS IaC
 site_description: DevOps e Infraestrutura como Código na AWS
 site_author: uiuqM
-repo_url: https://uiuqm.github.io/treinamento-devops-aws-iac-epic
+site_url: https://uiuqm.github.io/treinamento-devops-aws-iac-epic
 
 theme:
   name: material
