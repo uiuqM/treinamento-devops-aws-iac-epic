@@ -47,14 +47,5 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - Início Rápido: getting-started.md
-  - AWS:
-    - Visão Geral: aws/overview.md
-    - Serviços Principais: aws/core-services.md
-  - Infraestrutura como Código:
-    - Visão Geral: iac/overview.md
-    - Terraform: iac/terraform.md
-    - AWS CDK: iac/cdk.md
-  - DevOps:
-    - Visão Geral: devops/overview.md
-    - CI/CD: devops/cicd.md
+  - Ementa: Plano de Ensino Iac AWS.md
+  - Apresentacao e introducao: apresentacao.md
