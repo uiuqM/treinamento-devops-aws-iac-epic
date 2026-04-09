@@ -46,6 +46,6 @@ markdown_extensions:
 
 
 nav:
-  - Home: apresentacao.md
+  - Home: index.md
   - Ementa: plano-de-ensino.md
   - encontro-01: encontro-01.md
