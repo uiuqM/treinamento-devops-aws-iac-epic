@@ -152,7 +152,7 @@ resource "aws_route_table_association" "rta" {
 
 # --- Security Group ---
 resource "aws_security_group" "ec2" {
-  name   = "sg-ec2-lab"
+  name   = "ec2-lab"
   vpc_id = aws_vpc.lab.id
 
   ingress {
