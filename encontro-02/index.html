@@ -1,0 +1,1893 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="DevOps e Infraestrutura como Código na AWS">
+      
+      
+        <meta name="author" content="uiuqM">
+      
+      
+        <link rel="canonical" href="https://uiuqm.github.io/treinamento-devops-aws-iac-epic/encontro-02/">
+      
+      
+        <link rel="prev" href="../encontro-01/">
+      
+      
+        <link rel="next" href="../encontro-03/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>encontro-02 - Treinamento DevOps AWS IaC</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#encontro-02-terraform-no-learner-lab-primeiros-recursos" class="md-skip">
+          Ir para o conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="Treinamento DevOps AWS IaC" class="md-header__button md-logo" aria-label="Treinamento DevOps AWS IaC" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Treinamento DevOps AWS IaC
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              encontro-02
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando a pesquisa
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../plano-de-ensino/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Ementa
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../encontro-01/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  encontro-01
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  encontro-02
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../encontro-03/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  encontro-03
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../encontro-04/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  encontro-04
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../encontro-05/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  encontro-05
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Treinamento DevOps AWS IaC" class="md-nav__button md-logo" aria-label="Treinamento DevOps AWS IaC" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Treinamento DevOps AWS IaC
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plano-de-ensino/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ementa
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../encontro-01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    encontro-01
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    encontro-02
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    encontro-02
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivos-do-encontro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivos do Encontro
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roteiro-2h" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roteiro (2h)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conteudo-expositivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conteúdo Expositivo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conteúdo Expositivo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-sintaxe-hcl-hashicorp-configuration-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Sintaxe HCL — HashiCorp Configuration Language
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-ciclo-de-vida-terraform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Ciclo de Vida Terraform
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-state-file-o-inventario-do-terraform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 State File — O inventário do Terraform
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-diferenca-crucial-no-learner-lab-sem-aws-configure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Diferença crucial no Learner Lab: sem aws configure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#se-usar-o-terminal-da-sua-maquina-local-em-vez-do-terminal-do-learner-lab-copiar-as-credenciais-do-painel-botao-aws-cli-e-exportar-as-tres-variaveis-antes-de-rodar-o-terraform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        &gt; ⚠️ Se usar o terminal da sua máquina local em vez do terminal do Learner Lab, copiar as credenciais do painel (botão "AWS CLI") e exportar as três variáveis antes de rodar o Terraform.
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="&gt; ⚠️ Se usar o terminal da sua máquina local em vez do terminal do Learner Lab, copiar as credenciais do painel (botão &#34;AWS CLI&#34;) e exportar as três variáveis antes de rodar o Terraform.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#25-a-role-labrole-substituta-de-roles-iam-customizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 A role LabRole — substituta de roles IAM customizadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laboratorio-2-instalando-terraform-e-criando-o-primeiro-recurso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Laboratório 2 — Instalando Terraform e Criando o Primeiro Recurso
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Laboratório 2 — Instalando Terraform e Criando o Primeiro Recurso">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passo-1-iniciar-o-learner-lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 1: Iniciar o Learner Lab
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passo-2-instalar-o-terraform-no-terminal-do-learner-lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 2: Instalar o Terraform no terminal do Learner Lab
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metodo-direto-binario-wget-q-httpsreleaseshashicorpcomterraform175terraform_175_linux_amd64zip-unzip-terraform_175_linux_amd64zip-verificar-terraform-version-saida-esperada-terraform-v175" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        # Método direto (binário) wget -q https://releases.hashicorp.com/terraform/1.7.5/terraform_1.7.5_linux_amd64.zip unzip terraform_1.7.5_linux_amd64.zip # Verificar terraform version # Saída esperada: Terraform v1.7.5
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atencao-a-instalacao-precisa-ser-feita-a-cada-nova-sessao-do-learner-lab-porque-o-terminal-e-redefinido-salvar-esse-bloco-de-instalacao-para-reutilizar-nos-proximos-encontros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        &gt; Atenção: a instalação precisa ser feita a cada nova sessão do Learner Lab porque o terminal é redefinido. Salvar esse bloco de instalação para reutilizar nos próximos encontros.
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="&gt; Atenção: a instalação precisa ser feita a cada nova sessão do Learner Lab porque o terminal é redefinido. Salvar esse bloco de instalação para reutilizar nos próximos encontros.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#passo-3-verificar-as-credenciais-ja-configuradas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 3: Verificar as credenciais (já configuradas)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passo-4-criar-o-diretorio-e-o-codigo-terraform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 4: Criar o diretório e o código Terraform
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passo-5-executar-o-ciclo-completo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 5: Executar o ciclo completo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-inicializar-baixa-o-provider-aws-terraform-init-terraform-plan-varbucket_namelab-iac-seu-nome-observe-o-output-create-aws_s3_bucketlab-plan-1-to-add-0-to-change-0-to-destroy-3-aplicar-terraform-apply-varbucket_namelab-iac-seu-nome-digite-yes-quando-solicitado-4-verificar-listar-buckets-da-conta-aws-s3-ls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        # 1. Inicializar (baixa o provider AWS) ../terraform init ../terraform plan -var=&quot;bucket_name=lab-iac-SEU-NOME&quot; # Observe o output: # + create aws_s3_bucket.lab # Plan: 1 to add, 0 to change, 0 to destroy. # 3. Aplicar ../terraform apply -var=&quot;bucket_name=lab-iac-SEU-NOME&quot; # Digite &quot;yes&quot; quando solicitado # 4. Verificar — listar buckets da conta aws s3 ls
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="# 1. Inicializar (baixa o provider AWS) ../terraform init ../terraform plan -var=&#34;bucket_name=lab-iac-SEU-NOME&#34; # Observe o output: # + create aws_s3_bucket.lab # Plan: 1 to add, 0 to change, 0 to destroy. # 3. Aplicar ../terraform apply -var=&#34;bucket_name=lab-iac-SEU-NOME&#34; # Digite &#34;yes&#34; quando solicitado # 4. Verificar — listar buckets da conta aws s3 ls">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#passo-6-inspecionar-o-state-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 6: Inspecionar o state file
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ver-o-conteudo-do-state-cat-terraformtfstate-listar-recursos-gerenciados-terraform-state-list-ver-detalhes-de-um-recurso-especifico-terraform-state-show-aws_s3_bucketlab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        # Ver o conteúdo do state cat terraform.tfstate # Listar recursos gerenciados ../terraform state list # Ver detalhes de um recurso específico ../terraform state show aws_s3_bucket.lab
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="# Ver o conteúdo do state cat terraform.tfstate # Listar recursos gerenciados ../terraform state list # Ver detalhes de um recurso específico ../terraform state show aws_s3_bucket.lab">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#passo-7-experimento-alterar-um-atributo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 7: Experimento — alterar um atributo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#terraform-plan-varbucket_namelab-iac-seu-nome-observe-update-in-place-nao-recria-o-bucket-so-altera-a-tag-terraform-apply-varbucket_namelab-iac-seu-nome" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ../terraform plan -var=&quot;bucket_name=lab-iac-SEU-NOME&quot; # Observe: ~ update in-place (não recria o bucket, só altera a tag) ../terraform apply -var=&quot;bucket_name=lab-iac-SEU-NOME&quot;
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="../terraform plan -var=&#34;bucket_name=lab-iac-SEU-NOME&#34; # Observe: ~ update in-place (não recria o bucket, só altera a tag) ../terraform apply -var=&#34;bucket_name=lab-iac-SEU-NOME&#34;">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#passo-8-destruir-ao-final" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 8: Destruir ao final ⚠️
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#script-de-inicializacao-rapida-salvar-para-proximas-sessoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Script de inicialização rápida (salvar para próximas sessões)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cat-setup-terraformsh-eof-binbash-echo-instalando-terraform-wget-q-httpsreleaseshashicorpcomterraform175terraform_175_linux_amd64zip-unzip-q-terraform_175_linux_amd64zip-echo-terraform-instalado-terraform-version-echo-credenciais-ativas-aws-sts-get-caller-identity-query-arn-output-text-eof-chmod-x-setup-terraformsh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cat &gt; ~/setup-terraform.sh &lt;&lt; &#39;EOF&#39; #!/bin/bash echo &quot;Instalando Terraform...&quot; wget -q https://releases.hashicorp.com/terraform/1.7.5/terraform_1.7.5_linux_amd64.zip unzip -q terraform_1.7.5_linux_amd64.zip echo &quot;Terraform instalado: $(terraform version)&quot; echo &quot;Credenciais ativas: $(aws sts get-caller-identity --query Arn --output text)&quot; EOF chmod +x ~/setup-terraform.sh
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bucket-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bucket Policy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#version-2012-10-17-statement-sid-publicreadgetobject-effect-allow-principal-action-s3getobject-resource-arnawss3lab-iac-uiuq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        { &quot;Version&quot;: &quot;2012-10-17&quot;, &quot;Statement&quot;: [ { &quot;Sid&quot;: &quot;PublicReadGetObject&quot;, &quot;Effect&quot;: &quot;Allow&quot;, &quot;Principal&quot;: &quot;*&quot;, &quot;Action&quot;: &quot;s3:GetObject&quot;, &quot;Resource&quot;: &quot;arn:aws:s3:::lab-iac-uiuq/*&quot; } ] }
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-para-casa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Atividade para Casa
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumo-das-diferencas-learner-lab-vs-conta-aws-normal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumo das diferenças Learner Lab vs. Conta AWS Normal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referências
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../encontro-03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    encontro-03
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../encontro-04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    encontro-04
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../encontro-05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    encontro-05
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivos-do-encontro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivos do Encontro
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roteiro-2h" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roteiro (2h)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conteudo-expositivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conteúdo Expositivo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conteúdo Expositivo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-sintaxe-hcl-hashicorp-configuration-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Sintaxe HCL — HashiCorp Configuration Language
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-ciclo-de-vida-terraform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Ciclo de Vida Terraform
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-state-file-o-inventario-do-terraform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 State File — O inventário do Terraform
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-diferenca-crucial-no-learner-lab-sem-aws-configure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Diferença crucial no Learner Lab: sem aws configure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#se-usar-o-terminal-da-sua-maquina-local-em-vez-do-terminal-do-learner-lab-copiar-as-credenciais-do-painel-botao-aws-cli-e-exportar-as-tres-variaveis-antes-de-rodar-o-terraform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        &gt; ⚠️ Se usar o terminal da sua máquina local em vez do terminal do Learner Lab, copiar as credenciais do painel (botão "AWS CLI") e exportar as três variáveis antes de rodar o Terraform.
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="&gt; ⚠️ Se usar o terminal da sua máquina local em vez do terminal do Learner Lab, copiar as credenciais do painel (botão &#34;AWS CLI&#34;) e exportar as três variáveis antes de rodar o Terraform.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#25-a-role-labrole-substituta-de-roles-iam-customizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 A role LabRole — substituta de roles IAM customizadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laboratorio-2-instalando-terraform-e-criando-o-primeiro-recurso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Laboratório 2 — Instalando Terraform e Criando o Primeiro Recurso
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Laboratório 2 — Instalando Terraform e Criando o Primeiro Recurso">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passo-1-iniciar-o-learner-lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 1: Iniciar o Learner Lab
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passo-2-instalar-o-terraform-no-terminal-do-learner-lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 2: Instalar o Terraform no terminal do Learner Lab
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metodo-direto-binario-wget-q-httpsreleaseshashicorpcomterraform175terraform_175_linux_amd64zip-unzip-terraform_175_linux_amd64zip-verificar-terraform-version-saida-esperada-terraform-v175" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        # Método direto (binário) wget -q https://releases.hashicorp.com/terraform/1.7.5/terraform_1.7.5_linux_amd64.zip unzip terraform_1.7.5_linux_amd64.zip # Verificar terraform version # Saída esperada: Terraform v1.7.5
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atencao-a-instalacao-precisa-ser-feita-a-cada-nova-sessao-do-learner-lab-porque-o-terminal-e-redefinido-salvar-esse-bloco-de-instalacao-para-reutilizar-nos-proximos-encontros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        &gt; Atenção: a instalação precisa ser feita a cada nova sessão do Learner Lab porque o terminal é redefinido. Salvar esse bloco de instalação para reutilizar nos próximos encontros.
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="&gt; Atenção: a instalação precisa ser feita a cada nova sessão do Learner Lab porque o terminal é redefinido. Salvar esse bloco de instalação para reutilizar nos próximos encontros.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#passo-3-verificar-as-credenciais-ja-configuradas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 3: Verificar as credenciais (já configuradas)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passo-4-criar-o-diretorio-e-o-codigo-terraform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 4: Criar o diretório e o código Terraform
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passo-5-executar-o-ciclo-completo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 5: Executar o ciclo completo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-inicializar-baixa-o-provider-aws-terraform-init-terraform-plan-varbucket_namelab-iac-seu-nome-observe-o-output-create-aws_s3_bucketlab-plan-1-to-add-0-to-change-0-to-destroy-3-aplicar-terraform-apply-varbucket_namelab-iac-seu-nome-digite-yes-quando-solicitado-4-verificar-listar-buckets-da-conta-aws-s3-ls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        # 1. Inicializar (baixa o provider AWS) ../terraform init ../terraform plan -var=&quot;bucket_name=lab-iac-SEU-NOME&quot; # Observe o output: # + create aws_s3_bucket.lab # Plan: 1 to add, 0 to change, 0 to destroy. # 3. Aplicar ../terraform apply -var=&quot;bucket_name=lab-iac-SEU-NOME&quot; # Digite &quot;yes&quot; quando solicitado # 4. Verificar — listar buckets da conta aws s3 ls
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="# 1. Inicializar (baixa o provider AWS) ../terraform init ../terraform plan -var=&#34;bucket_name=lab-iac-SEU-NOME&#34; # Observe o output: # + create aws_s3_bucket.lab # Plan: 1 to add, 0 to change, 0 to destroy. # 3. Aplicar ../terraform apply -var=&#34;bucket_name=lab-iac-SEU-NOME&#34; # Digite &#34;yes&#34; quando solicitado # 4. Verificar — listar buckets da conta aws s3 ls">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#passo-6-inspecionar-o-state-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 6: Inspecionar o state file
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ver-o-conteudo-do-state-cat-terraformtfstate-listar-recursos-gerenciados-terraform-state-list-ver-detalhes-de-um-recurso-especifico-terraform-state-show-aws_s3_bucketlab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        # Ver o conteúdo do state cat terraform.tfstate # Listar recursos gerenciados ../terraform state list # Ver detalhes de um recurso específico ../terraform state show aws_s3_bucket.lab
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="# Ver o conteúdo do state cat terraform.tfstate # Listar recursos gerenciados ../terraform state list # Ver detalhes de um recurso específico ../terraform state show aws_s3_bucket.lab">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#passo-7-experimento-alterar-um-atributo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 7: Experimento — alterar um atributo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#terraform-plan-varbucket_namelab-iac-seu-nome-observe-update-in-place-nao-recria-o-bucket-so-altera-a-tag-terraform-apply-varbucket_namelab-iac-seu-nome" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ../terraform plan -var=&quot;bucket_name=lab-iac-SEU-NOME&quot; # Observe: ~ update in-place (não recria o bucket, só altera a tag) ../terraform apply -var=&quot;bucket_name=lab-iac-SEU-NOME&quot;
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="../terraform plan -var=&#34;bucket_name=lab-iac-SEU-NOME&#34; # Observe: ~ update in-place (não recria o bucket, só altera a tag) ../terraform apply -var=&#34;bucket_name=lab-iac-SEU-NOME&#34;">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#passo-8-destruir-ao-final" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 8: Destruir ao final ⚠️
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#script-de-inicializacao-rapida-salvar-para-proximas-sessoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Script de inicialização rápida (salvar para próximas sessões)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cat-setup-terraformsh-eof-binbash-echo-instalando-terraform-wget-q-httpsreleaseshashicorpcomterraform175terraform_175_linux_amd64zip-unzip-q-terraform_175_linux_amd64zip-echo-terraform-instalado-terraform-version-echo-credenciais-ativas-aws-sts-get-caller-identity-query-arn-output-text-eof-chmod-x-setup-terraformsh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cat &gt; ~/setup-terraform.sh &lt;&lt; &#39;EOF&#39; #!/bin/bash echo &quot;Instalando Terraform...&quot; wget -q https://releases.hashicorp.com/terraform/1.7.5/terraform_1.7.5_linux_amd64.zip unzip -q terraform_1.7.5_linux_amd64.zip echo &quot;Terraform instalado: $(terraform version)&quot; echo &quot;Credenciais ativas: $(aws sts get-caller-identity --query Arn --output text)&quot; EOF chmod +x ~/setup-terraform.sh
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bucket-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bucket Policy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#version-2012-10-17-statement-sid-publicreadgetobject-effect-allow-principal-action-s3getobject-resource-arnawss3lab-iac-uiuq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        { &quot;Version&quot;: &quot;2012-10-17&quot;, &quot;Statement&quot;: [ { &quot;Sid&quot;: &quot;PublicReadGetObject&quot;, &quot;Effect&quot;: &quot;Allow&quot;, &quot;Principal&quot;: &quot;*&quot;, &quot;Action&quot;: &quot;s3:GetObject&quot;, &quot;Resource&quot;: &quot;arn:aws:s3:::lab-iac-uiuq/*&quot; } ] }
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-para-casa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Atividade para Casa
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumo-das-diferencas-learner-lab-vs-conta-aws-normal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumo das diferenças Learner Lab vs. Conta AWS Normal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referências
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="encontro-02-terraform-no-learner-lab-primeiros-recursos">Encontro 02 — Terraform no Learner Lab: Primeiros Recursos<a class="headerlink" href="#encontro-02-terraform-no-learner-lab-primeiros-recursos" title="Permanent link">&para;</a></h1>
+<hr />
+<p><strong>Duração:</strong> 2h<br />
+<strong>Bloco:</strong> Fundamentos<br />
+<strong>Ambiente:</strong> AWS Academy Learner Lab</p>
+<hr />
+<h2 id="objetivos-do-encontro">Objetivos do Encontro<a class="headerlink" href="#objetivos-do-encontro" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Entender a sintaxe HCL (HashiCorp Configuration Language)</li>
+<li>Compreender o ciclo init → plan → apply → destroy</li>
+<li>Instalar e configurar o Terraform no terminal do Learner Lab</li>
+<li>Criar o primeiro recurso AWS (bucket S3) com Terraform dentro do Learner Lab</li>
+<li>Entender o state file e a role <code>LabRole</code> como substituta do usuário IAM</li>
+</ul>
+<hr />
+<h2 id="roteiro-2h">Roteiro (2h)<a class="headerlink" href="#roteiro-2h" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Tempo</th>
+<th>Atividade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0:00 – 0:10</td>
+<td>Revisão do Encontro 1 + dúvidas da atividade de casa</td>
+</tr>
+<tr>
+<td>0:10 – 0:45</td>
+<td>Exposição: sintaxe HCL, providers, resources, variables, outputs</td>
+</tr>
+<tr>
+<td>0:45 – 1:05</td>
+<td>Exposição: ciclo de vida Terraform + state file</td>
+</tr>
+<tr>
+<td>1:05 – 1:50</td>
+<td>Laboratório: instalar Terraform no Learner Lab + criar S3 bucket</td>
+</tr>
+<tr>
+<td>1:50 – 2:00</td>
+<td>Síntese e dúvidas</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="conteudo-expositivo">Conteúdo Expositivo<a class="headerlink" href="#conteudo-expositivo" title="Permanent link">&para;</a></h2>
+<hr />
+<h3 id="21-sintaxe-hcl-hashicorp-configuration-language">2.1 Sintaxe HCL — HashiCorp Configuration Language<a class="headerlink" href="#21-sintaxe-hcl-hashicorp-configuration-language" title="Permanent link">&para;</a></h3>
+<hr />
+<p>HCL é a linguagem dos arquivos <code>.tf</code>. Legível, declarativa e fortemente tipada.</p>
+<p><strong>Estrutura básica de um projeto Terraform:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>meu-projeto/
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── main.tf        → recursos principais
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── variables.tf   → declaração de variáveis
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── outputs.tf     → valores a exibir após o apply
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>└── terraform.tfstate  → gerado automaticamente (não editar!)
+</code></pre></div></p>
+<hr />
+<p><strong>Blocos fundamentais:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 1. terraform — configura a versão e os providers</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">terraform</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nb">required_providers</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nb">aws</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">      </span><span class="na">source</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hashicorp/aws&quot;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">      </span><span class="na">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;~&gt; 5.0&quot;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">}</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="c1"># 2. provider — configura a região AWS</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="kr">provider</span><span class="w"> </span><span class="nv">&quot;aws&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">  </span><span class="na">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;us-east-1&quot;</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="p">}</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="c1"># 3. resource — declara um recurso na AWS</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_s3_bucket&quot;</span><span class="w"> </span><span class="nv">&quot;meu_bucket&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">  </span><span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;meu-bucket-iac-2024&quot;</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">  </span><span class="nb">tags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">    </span><span class="na">Name</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Bucket do Lab&quot;</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">    </span><span class="na">Turma</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;IAC-AWS&quot;</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="p">}</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="c1"># 4. variable — valor configurável</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="kr">variable</span><span class="w"> </span><span class="nv">&quot;bucket_name&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="w">  </span><span class="na">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Nome único do bucket S3&quot;</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="w">  </span><span class="na">type</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="kt">string</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="p">}</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="c1"># 5. output — exibe um valor após o apply</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="kr">output</span><span class="w"> </span><span class="nv">&quot;bucket_arn&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="w">  </span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_s3_bucket.meu_bucket.arn</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="p">}</span>
+</code></pre></div>
+<hr />
+<p><strong>Regra de nomenclatura dos resources:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>resource &quot;TIPO_DO_RECURSO&quot; &quot;NOME_LOCAL&quot; { ... }
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>         ↑                  ↑
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>     tipo na AWS        identificador interno
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>   (aws_s3_bucket)       (qualquer nome)
+</code></pre></div></p>
+<hr />
+<p>Referência a outro recurso:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Para referenciar o ARN do bucket acima:</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nv">aws_s3_bucket.meu_bucket.arn</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># TIPO.NOME_LOCAL.ATRIBUTO</span>
+</code></pre></div></p>
+<hr />
+<h3 id="22-ciclo-de-vida-terraform">2.2 Ciclo de Vida Terraform<a class="headerlink" href="#22-ciclo-de-vida-terraform" title="Permanent link">&para;</a></h3>
+<hr />
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>1. terraform init
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>   └── Baixa o provider AWS (~50 MB)
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>   └── Inicializa o diretório de trabalho
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>2. terraform fmt
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>   └── Formata o código automaticamente
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>3. terraform validate
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>   └── Valida sintaxe sem acessar a AWS
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>4. terraform plan
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>   └── Calcula o que será criado/modificado/destruído
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>   └── Mostra um &quot;diff&quot; da infraestrutura
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>5. terraform apply
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>   └── Executa as mudanças na AWS
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>   └── Cria o arquivo terraform.tfstate
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>6. terraform destroy
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>   └── Remove TODOS os recursos gerenciados
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>   └── ⚠️ Executar ao final de cada laboratório
+</code></pre></div>
+<hr />
+<p><strong>Símbolos no output do plan:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>+ create   → será criado
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>~ update   → será atualizado in-place
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>- destroy  → será destruído
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>-/+ replace → será destruído e recriado
+</code></pre></div></p>
+<hr />
+<h3 id="23-state-file-o-inventario-do-terraform">2.3 State File — O inventário do Terraform<a class="headerlink" href="#23-state-file-o-inventario-do-terraform" title="Permanent link">&para;</a></h3>
+<hr />
+<p>O <code>terraform.tfstate</code> é um arquivo JSON que mapeia:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Código .tf  ←→  Recursos reais na AWS
+</code></pre></div></p>
+<ul>
+<li>Nunca edite manualmente</li>
+<li>Deve ser compartilhado em times (via S3 + DynamoDB — veremos em encontros avançados)</li>
+<li>No Learner Lab: fica local no terminal; <strong>não é perdido entre sessões</strong> se o arquivo existir no mesmo diretório</li>
+</ul>
+<hr />
+<h3 id="24-diferenca-crucial-no-learner-lab-sem-aws-configure">2.4 Diferença crucial no Learner Lab: sem <code>aws configure</code><a class="headerlink" href="#24-diferenca-crucial-no-learner-lab-sem-aws-configure" title="Permanent link">&para;</a></h3>
+<hr />
+<p>Em uma conta AWS normal, você executa <code>aws configure</code> para informar Access Key e Secret Key de um usuário IAM. No Learner Lab isso <strong>não é necessário nem possível</strong> da forma tradicional.</p>
+<hr />
+<p>O Learner Lab já configura automaticamente as credenciais via <strong>variáveis de ambiente</strong> ao iniciar a sessão:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Já estão configuradas automaticamente no terminal do Learner Lab:</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>AWS_ACCESS_KEY_ID
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>AWS_SECRET_ACCESS_KEY
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>AWS_SESSION_TOKEN<span class="w">   </span>←<span class="w"> </span>obrigatório<span class="w"> </span>no<span class="w"> </span>Learner<span class="w"> </span>Lab,<span class="w"> </span>diferente<span class="w"> </span>de<span class="w"> </span>conta<span class="w"> </span>normal
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>AWS_DEFAULT_REGION
+</code></pre></div>
+<hr />
+<p>O Terraform detecta essas variáveis automaticamente — <strong>não é preciso configurar nada</strong>.</p>
+<h2 id="se-usar-o-terminal-da-sua-maquina-local-em-vez-do-terminal-do-learner-lab-copiar-as-credenciais-do-painel-botao-aws-cli-e-exportar-as-tres-variaveis-antes-de-rodar-o-terraform">&gt; ⚠️ Se usar o terminal da sua máquina local em vez do terminal do Learner Lab, copiar as credenciais do painel (botão "AWS CLI") e exportar as três variáveis antes de rodar o Terraform.<a class="headerlink" href="#se-usar-o-terminal-da-sua-maquina-local-em-vez-do-terminal-do-learner-lab-copiar-as-credenciais-do-painel-botao-aws-cli-e-exportar-as-tres-variaveis-antes-de-rodar-o-terraform" title="Permanent link">&para;</a></h2>
+<h3 id="25-a-role-labrole-substituta-de-roles-iam-customizadas">2.5 A role <code>LabRole</code> — substituta de roles IAM customizadas<a class="headerlink" href="#25-a-role-labrole-substituta-de-roles-iam-customizadas" title="Permanent link">&para;</a></h3>
+<hr />
+<p>Como não é possível criar IAM Roles no Learner Lab, todos os recursos que precisam de uma role (EC2 Instance Profile, por exemplo) devem usar a <code>LabRole</code> já existente:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># ❌ NÃO funciona no Learner Lab:</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_iam_role&quot;</span><span class="w"> </span><span class="nv">&quot;minha_role&quot;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># ✅ Funciona no Learner Lab — referenciar a LabRole existente:</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="kr">data</span><span class="w"> </span><span class="nc">&quot;aws_iam_role&quot;</span><span class="w"> </span><span class="nv">&quot;lab_role&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;LabRole&quot;</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="p">}</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_iam_instance_profile&quot;</span><span class="w"> </span><span class="nv">&quot;lab&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;LabInstanceProfile&quot;</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">  </span><span class="na">role</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">data.aws_iam_role.lab_role.name</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="laboratorio-2-instalando-terraform-e-criando-o-primeiro-recurso">Laboratório 2 — Instalando Terraform e Criando o Primeiro Recurso<a class="headerlink" href="#laboratorio-2-instalando-terraform-e-criando-o-primeiro-recurso" title="Permanent link">&para;</a></h2>
+<hr />
+<h3 id="objetivo">Objetivo<a class="headerlink" href="#objetivo" title="Permanent link">&para;</a></h3>
+<p>Instalar o Terraform no terminal do Learner Lab e criar um bucket S3 gerenciado por código.</p>
+<hr />
+<h3 id="passo-1-iniciar-o-learner-lab">Passo 1: Iniciar o Learner Lab<a class="headerlink" href="#passo-1-iniciar-o-learner-lab" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Academy LMS → Modules → Learner Lab → Start Lab
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>Aguardar ponto verde → terminal integrado à esquerda do console
+</code></pre></div>
+<hr />
+<h3 id="passo-2-instalar-o-terraform-no-terminal-do-learner-lab">Passo 2: Instalar o Terraform no terminal do Learner Lab<a class="headerlink" href="#passo-2-instalar-o-terraform-no-terminal-do-learner-lab" title="Permanent link">&para;</a></h3>
+<hr />
+<p>O terminal do Learner Lab usa Amazon Linux. O Terraform não vem instalado — instalar assim:</p>
+<h2 id="metodo-direto-binario-wget-q-httpsreleaseshashicorpcomterraform175terraform_175_linux_amd64zip-unzip-terraform_175_linux_amd64zip-verificar-terraform-version-saida-esperada-terraform-v175"><div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Método direto (binário)</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>wget<span class="w"> </span>-q<span class="w"> </span>https://releases.hashicorp.com/terraform/1.7.5/terraform_1.7.5_linux_amd64.zip
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>unzip<span class="w"> </span>terraform_1.7.5_linux_amd64.zip
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="c1"># Verificar</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>terraform<span class="w"> </span>version
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="c1"># Saída esperada: Terraform v1.7.5</span>
+</code></pre></div><a class="headerlink" href="#metodo-direto-binario-wget-q-httpsreleaseshashicorpcomterraform175terraform_175_linux_amd64zip-unzip-terraform_175_linux_amd64zip-verificar-terraform-version-saida-esperada-terraform-v175" title="Permanent link">&para;</a></h2>
+<h2 id="atencao-a-instalacao-precisa-ser-feita-a-cada-nova-sessao-do-learner-lab-porque-o-terminal-e-redefinido-salvar-esse-bloco-de-instalacao-para-reutilizar-nos-proximos-encontros">&gt; <strong>Atenção:</strong> a instalação precisa ser feita a <strong>cada nova sessão do Learner Lab</strong> porque o terminal é redefinido. Salvar esse bloco de instalação para reutilizar nos próximos encontros.<a class="headerlink" href="#atencao-a-instalacao-precisa-ser-feita-a-cada-nova-sessao-do-learner-lab-porque-o-terminal-e-redefinido-salvar-esse-bloco-de-instalacao-para-reutilizar-nos-proximos-encontros" title="Permanent link">&para;</a></h2>
+<h3 id="passo-3-verificar-as-credenciais-ja-configuradas">Passo 3: Verificar as credenciais (já configuradas)<a class="headerlink" href="#passo-3-verificar-as-credenciais-ja-configuradas" title="Permanent link">&para;</a></h3>
+<hr />
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Verificar que as credenciais estão ativas</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>aws<span class="w"> </span>sts<span class="w"> </span>get-caller-identity
+</code></pre></div>
+<hr />
+<h3 id="passo-4-criar-o-diretorio-e-o-codigo-terraform">Passo 4: Criar o diretório e o código Terraform<a class="headerlink" href="#passo-4-criar-o-diretorio-e-o-codigo-terraform" title="Permanent link">&para;</a></h3>
+<hr />
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>mkdir<span class="w"> </span>~/lab-02-s3<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/lab-02-s3
+</code></pre></div>
+<hr />
+<p>Criar o arquivo <code>main.tf</code>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>main.tf<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="s">terraform {</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="s">  required_providers {</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="s">    aws = {</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="s">      source  = &quot;hashicorp/aws&quot;</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="s">      version = &quot;~&gt; 5.0&quot;</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="s">    }</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="s">  }</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="s">}</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="s">provider &quot;aws&quot; {</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="s">  region = &quot;us-east-1&quot;</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="s">}</span>
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="s">resource &quot;aws_s3_bucket&quot; &quot;lab&quot; {</span>
+<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="s">  bucket = var.bucket_name</span>
+<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a>
+<a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a><span class="s">  tags = {</span>
+<a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a><span class="s">    Name    = &quot;Lab IAC - 02&quot;</span>
+<a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a><span class="s">    Turma   = &quot;devops-epic-aws-iac&quot;</span>
+<a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a><span class="s">    Aluno   = &quot;seu-nome&quot;</span>
+<a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a><span class="s">  }</span>
+<a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a><span class="s">}</span>
+<a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a>
+<a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a><span class="s">output &quot;bucket_name&quot; {</span>
+<a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a><span class="s">  value = aws_s3_bucket.lab.id</span>
+<a id="__codelineno-13-27" name="__codelineno-13-27" href="#__codelineno-13-27"></a><span class="s">}</span>
+<a id="__codelineno-13-28" name="__codelineno-13-28" href="#__codelineno-13-28"></a>
+<a id="__codelineno-13-29" name="__codelineno-13-29" href="#__codelineno-13-29"></a><span class="s">output &quot;bucket_arn&quot; {</span>
+<a id="__codelineno-13-30" name="__codelineno-13-30" href="#__codelineno-13-30"></a><span class="s">  value = aws_s3_bucket.lab.arn</span>
+<a id="__codelineno-13-31" name="__codelineno-13-31" href="#__codelineno-13-31"></a><span class="s">}</span>
+<a id="__codelineno-13-32" name="__codelineno-13-32" href="#__codelineno-13-32"></a><span class="s">EOF</span>
+</code></pre></div></p>
+<hr />
+<p>Criar o arquivo <code>variables.tf</code>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>variables.tf<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="s">variable &quot;bucket_name&quot; {</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="s">  description = &quot;Nome único global do bucket (deve ser único em toda a AWS)&quot;</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="s">  type        = string</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="s">}</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="s">EOF</span>
+</code></pre></div></p>
+<hr />
+<h3 id="passo-5-executar-o-ciclo-completo">Passo 5: Executar o ciclo completo<a class="headerlink" href="#passo-5-executar-o-ciclo-completo" title="Permanent link">&para;</a></h3>
+<h2 id="1-inicializar-baixa-o-provider-aws-terraform-init-terraform-plan-varbucket_namelab-iac-seu-nome-observe-o-output-create-aws_s3_bucketlab-plan-1-to-add-0-to-change-0-to-destroy-3-aplicar-terraform-apply-varbucket_namelab-iac-seu-nome-digite-yes-quando-solicitado-4-verificar-listar-buckets-da-conta-aws-s3-ls"><div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># 1. Inicializar (baixa o provider AWS)</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>../terraform<span class="w"> </span>init
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>../terraform<span class="w"> </span>plan<span class="w"> </span>-var<span class="o">=</span><span class="s2">&quot;bucket_name=lab-iac-SEU-NOME&quot;</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="c1"># Observe o output:</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="c1"># + create  aws_s3_bucket.lab</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="c1"># Plan: 1 to add, 0 to change, 0 to destroy.</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="c1"># 3. Aplicar</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>../terraform<span class="w"> </span>apply<span class="w"> </span>-var<span class="o">=</span><span class="s2">&quot;bucket_name=lab-iac-SEU-NOME&quot;</span>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="c1"># Digite &quot;yes&quot; quando solicitado</span>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="c1"># 4. Verificar — listar buckets da conta</span>
+<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>aws<span class="w"> </span>s3<span class="w"> </span>ls
+</code></pre></div><a class="headerlink" href="#1-inicializar-baixa-o-provider-aws-terraform-init-terraform-plan-varbucket_namelab-iac-seu-nome-observe-o-output-create-aws_s3_bucketlab-plan-1-to-add-0-to-change-0-to-destroy-3-aplicar-terraform-apply-varbucket_namelab-iac-seu-nome-digite-yes-quando-solicitado-4-verificar-listar-buckets-da-conta-aws-s3-ls" title="Permanent link">&para;</a></h2>
+<h3 id="passo-6-inspecionar-o-state-file">Passo 6: Inspecionar o state file<a class="headerlink" href="#passo-6-inspecionar-o-state-file" title="Permanent link">&para;</a></h3>
+<h2 id="ver-o-conteudo-do-state-cat-terraformtfstate-listar-recursos-gerenciados-terraform-state-list-ver-detalhes-de-um-recurso-especifico-terraform-state-show-aws_s3_bucketlab"><div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># Ver o conteúdo do state</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>cat<span class="w"> </span>terraform.tfstate
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="c1"># Listar recursos gerenciados</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>../terraform<span class="w"> </span>state<span class="w"> </span>list
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="c1"># Ver detalhes de um recurso específico</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>../terraform<span class="w"> </span>state<span class="w"> </span>show<span class="w"> </span>aws_s3_bucket.lab
+</code></pre></div><a class="headerlink" href="#ver-o-conteudo-do-state-cat-terraformtfstate-listar-recursos-gerenciados-terraform-state-list-ver-detalhes-de-um-recurso-especifico-terraform-state-show-aws_s3_bucketlab" title="Permanent link">&para;</a></h2>
+<h3 id="passo-7-experimento-alterar-um-atributo">Passo 7: Experimento — alterar um atributo<a class="headerlink" href="#passo-7-experimento-alterar-um-atributo" title="Permanent link">&para;</a></h3>
+<hr />
+<p>Editar <code>main.tf</code> e adicionar uma nova tag:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nb">tags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">  </span><span class="na">Name</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Lab IAC&quot;</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">  </span><span class="na">Turma</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;IAC-AWS&quot;</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">  </span><span class="na">Aluno</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;seu-nome&quot;</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">  </span><span class="na">Projeto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;encontro-02&quot;</span><span class="c1">    # ← nova linha</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="p">}</span>
+</code></pre></div></p>
+<h2 id="terraform-plan-varbucket_namelab-iac-seu-nome-observe-update-in-place-nao-recria-o-bucket-so-altera-a-tag-terraform-apply-varbucket_namelab-iac-seu-nome"><div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>../terraform<span class="w"> </span>plan<span class="w"> </span>-var<span class="o">=</span><span class="s2">&quot;bucket_name=lab-iac-SEU-NOME&quot;</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="c1"># Observe: ~ update in-place (não recria o bucket, só altera a tag)</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>../terraform<span class="w"> </span>apply<span class="w"> </span>-var<span class="o">=</span><span class="s2">&quot;bucket_name=lab-iac-SEU-NOME&quot;</span>
+</code></pre></div><a class="headerlink" href="#terraform-plan-varbucket_namelab-iac-seu-nome-observe-update-in-place-nao-recria-o-bucket-so-altera-a-tag-terraform-apply-varbucket_namelab-iac-seu-nome" title="Permanent link">&para;</a></h2>
+<h3 id="passo-8-destruir-ao-final">Passo 8: Destruir ao final ⚠️<a class="headerlink" href="#passo-8-destruir-ao-final" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>../terraform<span class="w"> </span>destroy<span class="w"> </span>-var<span class="o">=</span><span class="s2">&quot;bucket_name=lab-iac-SEU-NOME&quot;</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="c1"># Digite &quot;yes&quot;</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="c1"># Confirmar que não há mais buckets</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>aws<span class="w"> </span>s3<span class="w"> </span>ls
+</code></pre></div>
+<hr />
+<h2 id="script-de-inicializacao-rapida-salvar-para-proximas-sessoes">Script de inicialização rápida (salvar para próximas sessões)<a class="headerlink" href="#script-de-inicializacao-rapida-salvar-para-proximas-sessoes" title="Permanent link">&para;</a></h2>
+<hr />
+<p>Como o Terraform precisa ser reinstalado a cada sessão, criar um script de setup:</p>
+<h2 id="cat-setup-terraformsh-eof-binbash-echo-instalando-terraform-wget-q-httpsreleaseshashicorpcomterraform175terraform_175_linux_amd64zip-unzip-q-terraform_175_linux_amd64zip-echo-terraform-instalado-terraform-version-echo-credenciais-ativas-aws-sts-get-caller-identity-query-arn-output-text-eof-chmod-x-setup-terraformsh"><div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>~/setup-terraform.sh<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="s">#!/bin/bash</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="s">echo &quot;Instalando Terraform...&quot;</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="s">wget -q https://releases.hashicorp.com/terraform/1.7.5/terraform_1.7.5_linux_amd64.zip</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="s">unzip -q terraform_1.7.5_linux_amd64.zip</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="s">echo &quot;Terraform instalado: $(terraform version)&quot;</span>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="s">echo &quot;Credenciais ativas: $(aws sts get-caller-identity --query Arn --output text)&quot;</span>
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="s">EOF</span>
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>
+<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>chmod<span class="w"> </span>+x<span class="w"> </span>~/setup-terraform.sh
+</code></pre></div><a class="headerlink" href="#cat-setup-terraformsh-eof-binbash-echo-instalando-terraform-wget-q-httpsreleaseshashicorpcomterraform175terraform_175_linux_amd64zip-unzip-q-terraform_175_linux_amd64zip-echo-terraform-instalado-terraform-version-echo-credenciais-ativas-aws-sts-get-caller-identity-query-arn-output-text-eof-chmod-x-setup-terraformsh" title="Permanent link">&para;</a></h2>
+<p>Nos próximos encontros, basta executar:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>~/setup-terraform.sh
+</code></pre></div></p>
+<hr />
+<h2 id="bucket-policy">Bucket Policy<a class="headerlink" href="#bucket-policy" title="Permanent link">&para;</a></h2>
+<h2 id="version-2012-10-17-statement-sid-publicreadgetobject-effect-allow-principal-action-s3getobject-resource-arnawss3lab-iac-uiuq"><div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="o">{</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">  </span><span class="s2">&quot;Version&quot;</span>:<span class="w"> </span><span class="s2">&quot;2012-10-17&quot;</span>,
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">  </span><span class="s2">&quot;Statement&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="w">    </span><span class="o">{</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="w">      </span><span class="s2">&quot;Sid&quot;</span>:<span class="w"> </span><span class="s2">&quot;PublicReadGetObject&quot;</span>,
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="w">      </span><span class="s2">&quot;Effect&quot;</span>:<span class="w"> </span><span class="s2">&quot;Allow&quot;</span>,
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="w">      </span><span class="s2">&quot;Principal&quot;</span>:<span class="w"> </span><span class="s2">&quot;*&quot;</span>,
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="w">      </span><span class="s2">&quot;Action&quot;</span>:<span class="w"> </span><span class="s2">&quot;s3:GetObject&quot;</span>,
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="w">      </span><span class="s2">&quot;Resource&quot;</span>:<span class="w"> </span><span class="s2">&quot;arn:aws:s3:::lab-iac-uiuq/*&quot;</span>
+<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="w">  </span><span class="o">]</span>
+<a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a><span class="o">}</span>
+</code></pre></div><a class="headerlink" href="#version-2012-10-17-statement-sid-publicreadgetobject-effect-allow-principal-action-s3getobject-resource-arnawss3lab-iac-uiuq" title="Permanent link">&para;</a></h2>
+<h2 id="atividade-para-casa">Atividade para Casa<a class="headerlink" href="#atividade-para-casa" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Execute novamente o lab em uma nova sessão: inicie o Learner Lab, rode o script de setup, recrie o bucket e destrua</li>
+<li>Adicione um <code>output</code> que exiba a região onde o bucket foi criado: <code>aws_s3_bucket.lab.region</code></li>
+<li>Pesquisa: o que é <strong>Terraform drift</strong>? Como o comando <code>terraform plan</code> ajuda a detectá-lo?</li>
+<li>Pesquisa: o que é um <strong>backend remoto</strong> no Terraform e por que times usam S3 + DynamoDB?</li>
+</ol>
+<hr />
+<h2 id="resumo-das-diferencas-learner-lab-vs-conta-aws-normal">Resumo das diferenças Learner Lab vs. Conta AWS Normal<a class="headerlink" href="#resumo-das-diferencas-learner-lab-vs-conta-aws-normal" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Ponto</th>
+<th>Conta Normal</th>
+<th>Learner Lab</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Autenticação</td>
+<td><code>aws configure</code> com Access Key permanente</td>
+<td>Credenciais temporárias automáticas (Session Token)</td>
+</tr>
+<tr>
+<td>Criar usuários IAM</td>
+<td>Sim</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>Criar roles IAM</td>
+<td>Sim</td>
+<td>Não — usar <code>LabRole</code> existente</td>
+</tr>
+<tr>
+<td>Terraform instalado</td>
+<td>Depende da máquina</td>
+<td>Não — instalar a cada sessão</td>
+</tr>
+<tr>
+<td>Estado do ambiente entre sessões</td>
+<td>Persistente</td>
+<td>Recursos persistem; terminal reinicia</td>
+</tr>
+<tr>
+<td>IP público da EC2</td>
+<td>Fixo (Elastic IP) ou dinâmico</td>
+<td>Muda ao reiniciar a sessão</td>
+</tr>
+<tr>
+<td>Custo</td>
+<td>Pago ou Free Tier</td>
+<td>Crédito US$ 100 por aluno</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="referencias">Referências<a class="headerlink" href="#referencias" title="Permanent link">&para;</a></h2>
+<ul>
+<li>HashiCorp. <em>Terraform Language Documentation.</em> https://developer.hashicorp.com/terraform/language</li>
+<li>HashiCorp. <em>AWS Provider.</em> https://registry.terraform.io/providers/hashicorp/aws/latest/docs</li>
+<li>AWS Academy. <em>Learner Lab Restrictions.</em> Disponível no README do próprio ambiente (botão "Readme" no Learner Lab)</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar ao topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

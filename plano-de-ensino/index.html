@@ -1,0 +1,1446 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="DevOps e Infraestrutura como Código na AWS">
+      
+      
+        <meta name="author" content="uiuqM">
+      
+      
+        <link rel="canonical" href="https://uiuqm.github.io/treinamento-devops-aws-iac-epic/plano-de-ensino/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../encontro-01/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Ementa - Treinamento DevOps AWS IaC</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="Treinamento DevOps AWS IaC" class="md-header__button md-logo" aria-label="Treinamento DevOps AWS IaC" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Treinamento DevOps AWS IaC
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ementa
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando a pesquisa
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Ementa
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../encontro-01/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  encontro-01
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../encontro-02/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  encontro-02
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../encontro-03/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  encontro-03
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../encontro-04/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  encontro-04
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../encontro-05/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  encontro-05
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Treinamento DevOps AWS IaC" class="md-nav__button md-logo" aria-label="Treinamento DevOps AWS IaC" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Treinamento DevOps AWS IaC
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ementa
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../encontro-01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    encontro-01
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../encontro-02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    encontro-02
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../encontro-03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    encontro-03
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../encontro-04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    encontro-04
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../encontro-05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    encontro-05
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Ementa</h1>
+
+<p><strong>DevOps e infraestrutura como Código na AWS</strong></p>
+<p><strong>1. Identificação</strong></p>
+<p><strong>Instituição:</strong> Universidade Federal do Tocantins (UFT)<br />
+<strong>Curso:</strong> Bacharelado em Ciência da Computação
+<strong>Projeto:</strong> Infraestrutura como Código em AWS com Terraform e Docker<br />
+<strong>Carga Horária:</strong> 24 horas (12 encontros semanais de 2h)<br />
+<strong>Pré-requisitos:</strong> Engenharia de Software, Sistemas Operacionais e Redes de computadores<br />
+<strong>Instrutor:</strong> Wilque Muriel Do Nascimento Coelho<br />
+<strong>Período Letivo:</strong>2026.1</p>
+<hr />
+<p><strong>2. Ementa</strong></p>
+<p>Infraestrutura como Código (IaC) aplicada a ambientes em nuvem usando Terraform e AWS Academy. Provisionamento automatizado de recursos AWS mais utilizados: VPC, Security Groups, EC2, S3, RDS/DynamoDB, IAM e CloudWatch, respeitando limites e créditos gratuitos. Containers com Docker: criação de imagens, empacotamento de aplicações e publicação em instâncias EC2. Hospedagem de sites estáticos em S3. Construção de pipelines de Integração Contínua e Entrega Contínua (CI/CD) automatizando validação de Terraform, build de imagens Docker e deploy de aplicações na AWS. Observabilidade básica com CloudWatch (logs, métricas, alarmes). Boas práticas de segurança, gestão de custos e controle de estado Terraform. Três projetos práticos integradores: site estático em S3, aplicação web em Docker/EC2 e API com banco gerenciado (RDS/DynamoDB), todos provisionados com Terraform e automatizados via CI/CD.</p>
+<hr />
+<p><strong>3. Objetivos</strong></p>
+<p><strong>3.1 Objetivo Geral</strong></p>
+<p>Capacitar estudantes de Computação a projetar, versionar e automatizar infraestrutura em nuvem AWS utilizando Terraform como ferramenta de IaC, integrando containers Docker e pipelines de CI/CD, respeitando limites de custos e boas práticas de segurança e observabilidade.</p>
+<p><strong>3.2 Objetivos Específicos</strong></p>
+<p>Ao final do treinamento, o estudante deverá ser capaz de:</p>
+<ol>
+<li>
+<p>Explicar os conceitos de Infraestrutura como Código (IaC) e seus benefícios para gestão de ambientes em nuvem.</p>
+</li>
+<li>
+<p>Identificar serviços AWS elegíveis ao Free Tier (EC2, S3, RDS, DynamoDB, Lambda, CloudWatch) e planejar arquiteturas simples respeitando limites de custo.</p>
+</li>
+<li>
+<p>Escrever código Terraform para provisionar e gerenciar recursos AWS: VPC, sub-redes, Security Groups, EC2, S3 e bancos gerenciados.</p>
+</li>
+<li>
+<p>Criar imagens Docker otimizadas para aplicações e executá-las em instâncias EC2 provisionadas com Terraform.</p>
+</li>
+<li>
+<p>Configurar buckets S3 com Terraform para hospedagem de sites estáticos e armazenamento de artefatos.</p>
+</li>
+<li>
+<p>Provisionar e integrar bancos de dados gerenciados (RDS ou DynamoDB) com aplicações usando Terraform.</p>
+</li>
+<li>
+<p>Projetar e implementar pipelines de CI/CD que automatizam validação de Terraform (plan/apply), build de imagens Docker e deploy em EC2.</p>
+</li>
+<li>
+<p>Configurar observabilidade básica com CloudWatch: logs, métricas, dashboards e alarmes de billing.</p>
+</li>
+<li>
+<p>Reconhecer e aplicar boas práticas de segurança em IaC (gestão de secrets via IAM, princípio de menor privilégio)0.</p>
+</li>
+<li>
+<p>Gerenciar custos com budgets, alarmes e destruir infraestrutura de forma segura (terraform destroy).</p>
+</li>
+<li>
+<p>Desenvolver três projetos práticos integradores aplicando IaC, Docker e CI/CD em serviços AWS Academy.</p>
+</li>
+</ol>
+<hr />
+<p><strong>4. Conteúdo Programático</strong></p>
+<p><strong>Encontro 1 – Introdução: IaC, AWS Academy e projetos práticos</strong></p>
+<p><strong>Conteúdos:</strong></p>
+<ul>
+<li>
+<p>Conceitos de Infraestrutura como Código (IaC) e seus benefícios</p>
+</li>
+<li>
+<p>Apresentação do ecossistema: Terraform, Docker, CI/CD e serviços AWS</p>
+</li>
+<li>
+<p>AWS Academy</p>
+</li>
+<li>
+<p>Serviços foco da disciplina: VPC, EC2, S3, RDS/DynamoDB, Lambda, IAM, CloudWatch</p>
+</li>
+<li>
+<p>Apresentação dos três projetos práticos:</p>
+</li>
+<li>
+<p><strong>Projeto 1:</strong> Site estático em S3 via Terraform</p>
+</li>
+<li>
+<p><strong>Projeto 2:</strong> Aplicação web em Docker + EC2 via Terraform + CI/CD</p>
+</li>
+<li>
+<p><strong>Projeto 3:</strong> API com banco gerenciado (RDS/DynamoDB) via Terraform + pipeline</p>
+</li>
+</ul>
+<p><strong>Atividades:</strong></p>
+<ul>
+<li>
+<p>Criação de conta AWS educacional/Free Tier pelos estudantes</p>
+</li>
+<li>
+<p>Configuração de alarmes básicos de billing e budgets</p>
+</li>
+<li>
+<p>Discussão: mapeamento de necessidades de infraestrutura para projetos acadêmicos</p>
+</li>
+</ul>
+<hr />
+<p><strong>Encontro 2 – Fundamentos de Terraform na AWS</strong></p>
+<p><strong>Conteúdos:</strong></p>
+<ul>
+<li>
+<p>Arquitetura do Terraform: provider, recursos, variáveis, outputs, estado</p>
+</li>
+<li>
+<p>Provider AWS: autenticação, região, credenciais (boas práticas)</p>
+</li>
+<li>
+<p>Comandos básicos: init, plan, apply, destroy</p>
+</li>
+<li>
+<p>Versionamento de código Terraform com Git</p>
+</li>
+</ul>
+<p><strong>Atividades:</strong></p>
+<ul>
+<li>
+<p>Instalação do Terraform e configuração de credenciais AWS</p>
+</li>
+<li>
+<p>Criação de módulo Terraform mínimo: VPC simples + sub-redes públicas</p>
+</li>
+<li>
+<p>Prática de comandos: plan e apply de infraestrutura básica</p>
+</li>
+</ul>
+<hr />
+<p><strong>Encontro 3 – Rede e computação em AWS Academy</strong></p>
+<p><strong>Conteúdos:</strong></p>
+<ul>
+<li>
+<p>Conceitos de rede AWS: VPC, sub-redes, Internet Gateway, Security Groups</p>
+</li>
+<li>
+<p>Recursos de computação Free Tier: instâncias EC2 elegíveis (t2.micro, t3.micro)</p>
+</li>
+<li>
+<p>Provisionamento de EC2 com Terraform: tipo de instância, AMI, chaves SSH, security groups</p>
+</li>
+</ul>
+<p><strong>Atividades:</strong></p>
+<ul>
+<li>
+<p>Estender código Terraform para criar:</p>
+</li>
+<li>
+<p>1 Security Group com regras básicas (SSH, HTTP)</p>
+</li>
+<li>
+<p>1 instância EC2 t2.micro/t3.micro</p>
+</li>
+<li>
+<p>Conectar via SSH à instância provisionada</p>
+</li>
+<li>
+<p>Prática de destroy para controle de custos</p>
+</li>
+</ul>
+<hr />
+<p><strong>Encontro 4 – Docker: empacotamento de aplicações</strong></p>
+<p><strong>Conteúdos:</strong></p>
+<ul>
+<li>
+<p>Revisão de conceitos de containers: imagens, containers, Dockerfile, registry</p>
+</li>
+<li>
+<p>Estrutura de Dockerfile: FROM, COPY, RUN, CMD, EXPOSE</p>
+</li>
+<li>
+<p>Boas práticas: multi-stage builds, otimização de camadas, variáveis de ambiente</p>
+</li>
+<li>
+<p>Docker na EC2: instalação e execução de containers em instância AWS</p>
+</li>
+</ul>
+<p><strong>Atividades:</strong></p>
+<ul>
+<li>
+<p>Criar Dockerfile para aplicação exemplo (API web simples)</p>
+</li>
+<li>
+<p>Build e teste local da imagem Docker</p>
+</li>
+<li>
+<p>Deploy manual da aplicação containerizada na EC2 provisionada (via SSH/script)</p>
+</li>
+</ul>
+<hr />
+<p><strong>Encontro 5 – Armazenamento e serviços adicionais AWS Academy</strong></p>
+<p><strong>Conteúdos:</strong></p>
+<ul>
+<li>
+<p>Amazon S3: buckets, objetos, políticas de acesso básicas</p>
+</li>
+<li>
+<p>Outros serviços Free Tier aplicáveis: DynamoDB, RDS (limites reduzidos)</p>
+</li>
+<li>
+<p>Integração de aplicação com S3 (ex.: armazenamento de arquivos, logs)</p>
+</li>
+</ul>
+<p><strong>Atividades:</strong></p>
+<ul>
+<li>
+<p>Adicionar ao código Terraform:</p>
+</li>
+<li>
+<p>Criação de bucket S3 para artefatos/logs</p>
+</li>
+<li>
+<p>Outputs com informações de acesso ao bucket</p>
+</li>
+<li>
+<p>Configurar aplicação para usar S3 (exemplo: upload de arquivo estático)</p>
+</li>
+</ul>
+<hr />
+<p><strong>Encontro 6 – Armazenamento e banco gerenciado: RDS e DynamoDB</strong></p>
+<p><strong>Conteúdos:</strong></p>
+<ul>
+<li>
+<p>Amazon RDS: MySQL/PostgreSQL no Free Tier (750h/mês, 20GB)</p>
+</li>
+<li>
+<p>Amazon DynamoDB: tabela NoSQL com nível "always free"</p>
+</li>
+<li>
+<p>Comparação: quando usar RDS vs. DynamoDB</p>
+</li>
+<li>
+<p>Provisionamento de banco com Terraform: recursos, configurações mínimas, outputs</p>
+</li>
+</ul>
+<p><strong>Atividades:</strong></p>
+<ul>
+<li>
+<p>Criar, via Terraform, um banco gerenciado (RDS MySQL/Postgres micro <em>ou</em> DynamoDB)</p>
+</li>
+<li>
+<p>Configurar Security Groups para acesso seguro ao banco</p>
+</li>
+<li>
+<p>Testar conexão ao banco e realizar operações básicas (criar tabela, inserir dados)</p>
+</li>
+<li>
+<p>Documentar outputs: endpoint, porta, credenciais (via secrets)</p>
+</li>
+</ul>
+<hr />
+<p><strong>Encontro 7 – Projeto 3: API com banco gerenciado em AWS</strong></p>
+<p><strong>Conteúdos:</strong></p>
+<ul>
+<li>
+<p>Integração de aplicação com banco de dados AWS (RDS ou DynamoDB)</p>
+</li>
+<li>
+<p>Boas práticas: variáveis de ambiente, gestão de credenciais via IAM</p>
+</li>
+<li>
+<p>Execução de aplicação containerizada em EC2 conectada ao banco</p>
+</li>
+</ul>
+<p><strong>Atividades:</strong></p>
+<ul>
+<li>
+<p>Ajustar aplicação exemplo (API) para conectar ao banco provisionado</p>
+</li>
+<li>
+<p>Atualizar código Terraform para incluir EC2 + banco + networking necessário</p>
+</li>
+<li>
+<p>Subir aplicação em Docker na EC2, validando comunicação com banco</p>
+</li>
+<li>
+<p><strong>Início do Projeto 3:</strong> API funcional consumindo banco gerenciado na AWS</p>
+</li>
+</ul>
+<hr />
+<p><strong>Encontro 8 – CI/CD: conceitos e pipeline para Terraform + Docker</strong></p>
+<p><strong>Conteúdos:</strong></p>
+<ul>
+<li>
+<p>Integração Contínua e Entrega Contínua aplicados a IaC</p>
+</li>
+<li>
+<p>Pipeline multi-stage: validação Terraform, build Docker, testes</p>
+</li>
+<li>
+<p>Ferramentas: GitHub Actions, GitLab CI ou similar</p>
+</li>
+<li>
+<p>Boas práticas: validação de código (fmt, validate, plan), testes automatizados</p>
+</li>
+</ul>
+<p><strong>Atividades:</strong></p>
+<ul>
+<li>
+<p>Criar pipeline de CI que, a cada pull request:</p>
+</li>
+<li>
+<p>Execute terraform fmt -check e terraform validate</p>
+</li>
+<li>
+<p>Rode terraform plan (sem aplicar)</p>
+</li>
+<li>
+<p>Faça build da imagem Docker e execute testes da aplicação</p>
+</li>
+<li>
+<p>Configurar secrets para credenciais AWS na plataforma de CI</p>
+</li>
+</ul>
+<hr />
+<p><strong>Encontro 9 – CI/CD: deploy automatizado em AWS</strong></p>
+<p><strong>Conteúdos:</strong></p>
+<ul>
+<li>
+<p>Pipeline de entrega (CD): aplicação automática de mudanças de infraestrutura</p>
+</li>
+<li>
+<p>Estratégias de deploy: manual approval, ambientes separados (dev/prod)</p>
+</li>
+<li>
+<p>Atualização de aplicação em EC2 via pipeline (deploy de container atualizado)</p>
+</li>
+</ul>
+<p><strong>Atividades:</strong></p>
+<ul>
+<li>
+<p>Estender pipeline para:</p>
+</li>
+<li>
+<p>Ao merge em branch main, executar terraform apply em ambiente de laboratório</p>
+</li>
+<li>
+<p>Fazer push de imagem Docker para registry (Docker Hub ou ECR)</p>
+</li>
+<li>
+<p>Atualizar container em EC2 ou cluster K8s local via script</p>
+</li>
+</ul>
+<hr />
+<p><strong>Encontro 10 – Observabilidade básica com AWS CloudWatch</strong></p>
+<p><strong>Conteúdos:</strong></p>
+<ul>
+<li>
+<p>Conceitos de observabilidade: métricas, logs, traces</p>
+</li>
+<li>
+<p>AWS CloudWatch: métricas de EC2, logs de aplicações, dashboards básicos</p>
+</li>
+<li>
+<p>Configuração de logs da aplicação Docker para CloudWatch Logs</p>
+</li>
+<li>
+<p>Alarmes simples: CPU, memória, billing</p>
+</li>
+</ul>
+<p><strong>Atividades:</strong></p>
+<ul>
+<li>
+<p>Instrumentar aplicação para enviar logs ao CloudWatch Logs</p>
+</li>
+<li>
+<p>Criar dashboard básico no CloudWatch com métricas de EC2 e aplicação</p>
+</li>
+<li>
+<p>Configurar alarme de billing para controle de custos</p>
+</li>
+</ul>
+<hr />
+<p><strong>Encontro 11 – Boas práticas: segurança, custos e gestão de estado</strong></p>
+<p><strong>Conteúdos:</strong></p>
+<ul>
+<li>
+<p>Segurança em IaC: gestão de secrets, uso de IAM roles, princípio de menor privilégio</p>
+</li>
+<li>
+<p>Estado remoto do Terraform: conceito de backend S3 + DynamoDB para lock</p>
+</li>
+<li>
+<p>Tagging de recursos para organização e controle de custos</p>
+</li>
+<li>
+<p>Higiene de ambientes: terraform destroy, limpeza de recursos não utilizados</p>
+</li>
+</ul>
+<p><strong>Atividades:</strong></p>
+<ul>
+<li>
+<p>Revisar código Terraform do projeto:</p>
+</li>
+<li>
+<p>Adicionar tags a todos os recursos</p>
+</li>
+<li>
+<p>Validar que não há secrets hardcoded</p>
+</li>
+<li>
+<p>Configurar backend remoto para estado (S3 + DynamoDB)0</p>
+</li>
+<li>
+<p>Prática de destruição segura e completa da infraestrutura</p>
+</li>
+</ul>
+<hr />
+<p><strong>Encontro 12 – Apresentação dos projetos práticos e consolidação</strong></p>
+<p><strong>Conteúdos:</strong></p>
+<ul>
+<li>
+<p>Integração de todos os componentes: Terraform + Docker + CI/CD + Serviços AWS</p>
+</li>
+<li>
+<p>Revisão dos três projetos práticos desenvolvidos:</p>
+</li>
+<li>
+<p><strong>Projeto 1:</strong> Site estático em S3 via Terraform</p>
+</li>
+<li>
+<p><strong>Projeto 2:</strong> Aplicação web em Docker + EC2 via Terraform + CI/CD</p>
+</li>
+<li>
+<p><strong>Projeto 3:</strong> API com banco gerenciado (RDS/DynamoDB) via Terraform + pipeline</p>
+</li>
+<li>
+<p>Fluxo fim a fim demonstrado: código → CI/CD → infraestrutura AWS → aplicação rodando → monitoramento</p>
+</li>
+<li>
+<p>Discussão de próximos passos: Lambda/serverless, EKS, módulos Terraform avançados, certificações AWS</p>
+</li>
+</ul>
+<p><strong>Atividades:</strong></p>
+<ul>
+<li>
+<p>Apresentação pelos grupos (10-15 minutos cada):</p>
+</li>
+<li>
+<p>Demonstração dos três projetos funcionando</p>
+</li>
+<li>
+<p>Repositório Git organizado: Terraform, Dockerfiles, pipelines CI/CD, documentação</p>
+</li>
+<li>
+<p>Arquitetura AWS e decisões técnicas explicadas</p>
+</li>
+<li>
+<p>Gestão de custos e uso do Free Tier</p>
+</li>
+<li>
+<p>Retrospectiva da disciplina: aprendizados principais, desafios superados, aplicações em TCC e carreira</p>
+</li>
+<li>
+<p><strong>Destruição final obrigatória</strong> de todos os recursos AWS criados (terraform destroy)</p>
+</li>
+</ul>
+<hr />
+<p><strong>5. Metodologia de Ensino</strong></p>
+<p>O treinemanto adota abordagem prática e baseada em projetos, com metodologia expositiva-dialogada e atividades hands-on em laboratório. As estratégias incluem:</p>
+<ul>
+<li>
+<p><strong>Aulas expositivas dialogadas:</strong> apresentação de conceitos fundamentais de IaC, cloud computing, containers e CI/CD com apoio de slides e quadro, incentivando participação ativa dos estudantes.</p>
+</li>
+<li>
+<p><strong>Demonstrações práticas:</strong> o docente conduz demonstrações ao vivo de criação de código Terraform, build de imagens Docker, configuração de pipelines e deploy em ambiente AWS real.</p>
+</li>
+<li>
+<p><strong>Laboratórios guiados:</strong> atividades práticas estruturadas onde estudantes aplicam os conceitos vistos, com repositório Git compartilhado contendo aplicação exemplo e templates de código.</p>
+</li>
+<li>
+<p><strong>Aprendizagem baseada em projetos:</strong> projeto integrador percorre toda a disciplina, com entregas incrementais a cada encontro (provisionamento de VPC, EC2, containerização, pipeline CI/CD)1.</p>
+</li>
+<li>
+<p><strong>Trabalho colaborativo:</strong> atividades em duplas ou pequenos grupos para estimular troca de conhecimento e práticas de revisão de código (code review).</p>
+</li>
+<li>
+<p><strong>Enfoque em custos e sustentabilidade:</strong> orientação contínua sobre uso responsável de recursos AWS, monitoramento de billing e práticas de destruição de infraestrutura ao final dos experimentos.</p>
+</li>
+</ul>
+<hr />
+<p><strong>7. Recursos Didáticos</strong></p>
+<p><strong>7.1 Infraestrutura Tecnológica</strong></p>
+<ul>
+<li>
+<p><strong>Laboratório de informática</strong> com estações Linux/Windows com acesso à internet</p>
+</li>
+<li>
+<p><strong>Contas AWS educacionais</strong> para estudantes (AWS Academy, AWS Educate ou créditos Free Tier)</p>
+</li>
+<li>
+<p><strong>Ferramentas instaladas:</strong> Terraform, Docker, kubectl, Git, VS Code ou editor de texto</p>
+</li>
+<li>
+<p><strong>Plataforma de versionamento:</strong> GitHub/GitLab institucional ou público</p>
+</li>
+<li>
+<p><strong>Plataforma de CI/CD:</strong> GitHub Actions, GitLab CI ou Jenkins (conforme disponibilidade)</p>
+</li>
+</ul>
+<p><strong>7.2 Materiais de Apoio</strong></p>
+<ul>
+<li>
+<p><strong>Repositório oficial do projeto</strong> contendo:</p>
+</li>
+<li>
+<p>Aplicação exemplo (API web simples em Python/Node.js/Go)</p>
+</li>
+<li>
+<p>Templates de código Terraform para VPC, EC2, S3</p>
+</li>
+<li>
+<p>Exemplos de Dockerfiles e manifestos Kubernetes</p>
+</li>
+<li>
+<p>Templates de pipeline CI/CD</p>
+</li>
+<li>
+<p><strong>Documentação oficial:</strong></p>
+</li>
+<li>
+<p>Terraform AWS Provider Documentation</p>
+</li>
+<li>
+<p>AWS Academy Documentation</p>
+</li>
+<li>
+<p>Docker Documentation</p>
+</li>
+<li>
+<p>Kubernetes Documentation</p>
+</li>
+<li>
+<p><strong>Slides dos encontros</strong></p>
+</li>
+<li>
+<p><strong>Vídeos demonstrativos</strong> de procedimentos críticos (configuração de credenciais AWS, primeiro apply Terraform, etc.)</p>
+</li>
+</ul>
+<hr />
+<p><strong>8. Bibliografia</strong></p>
+<p><strong>8.1 Bibliografia Básica</strong></p>
+<p><strong>Documentação Oficial:</strong></p>
+<p>[4 HashiCorp. (2026). <em>Terraform AWS Provider Documentation</em>. <a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs">https://registry.terraform.io/providers/hashicorp/aws/latest/docs</a></p>
+<p>[5 Amazon Web Services. (2026). <em>AWS Academy</em>. <a href="https://aws.amazon.com/free/">https://aws.amazon.com/free/</a></p>
+<hr />
+<p><strong>9. Cronograma Resumido</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Semana</th>
+<th style="text-align: left;">Tópico Principal</th>
+<th style="text-align: left;">Entrega</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1 (02/04/2026)*</td>
+<td style="text-align: left;">IaC, AWS Academy e projetos práticos</td>
+<td style="text-align: left;">Conta AWS + alarmes</td>
+</tr>
+<tr>
+<td style="text-align: center;">2(09/04/2026)*</td>
+<td style="text-align: left;">Terraform básico: provider, recursos, estado</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">3(16/04/2026)*</td>
+<td style="text-align: left;">Rede e EC2 com Terraform</td>
+<td style="text-align: left;">Exercício 1: VPC + EC2</td>
+</tr>
+<tr>
+<td style="text-align: center;">4(23/04/2026)*</td>
+<td style="text-align: left;">Docker: empacotamento em EC2</td>
+<td style="text-align: left;">Exercício 2: Dockerfile + app</td>
+</tr>
+<tr>
+<td style="text-align: center;">5 (30/04/2026)*</td>
+<td style="text-align: left;">S3 e Projeto 1: site estático</td>
+<td style="text-align: left;">Projeto 1: S3 static site</td>
+</tr>
+<tr>
+<td style="text-align: center;">6(07/05/2026)*</td>
+<td style="text-align: left;">RDS/DynamoDB com Terraform</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">7(14/05/2026)*</td>
+<td style="text-align: left;">Projeto 3: API + banco gerenciado</td>
+<td style="text-align: left;">Projeto 3 (inicial)</td>
+</tr>
+<tr>
+<td style="text-align: center;">8(21/05/2026)*</td>
+<td style="text-align: left;">CI/CD: pipeline Terraform + Docker</td>
+<td style="text-align: left;">Exercício 3: Pipeline CI</td>
+</tr>
+<tr>
+<td style="text-align: center;">9(28/05/2026)*</td>
+<td style="text-align: left;">CI/CD: deploy automatizado (Proj. 2 e 3)</td>
+<td style="text-align: left;">Projeto 2: App + CI/CD</td>
+</tr>
+<tr>
+<td style="text-align: center;">10 (04/06/2026)*</td>
+<td style="text-align: left;">Observabilidade com CloudWatch</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">11(11/06/2026)*</td>
+<td style="text-align: left;">Segurança, custos e estado remoto</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">12(18/06/2026)*</td>
+<td style="text-align: left;">Apresentação dos 3 projetos</td>
+<td style="text-align: left;">Projetos 1, 2 e 3 finais</td>
+</tr>
+</tbody>
+</table>
+<p>Table 1: Cronograma de 12 semanas focado em serviços AWS e projetos práticos</p>
+<p>Poderão ocorrer mudanças nas datas, bem como antecipação das mesmas.*</p>
+<hr />
+<p><strong>10. Observações Importantes</strong></p>
+<p><strong>10.2 Política de Integridade Acadêmica</strong></p>
+<ul>
+<li>
+<p>Código deve ser original do grupo, com atribuição adequada de fontes externas</p>
+</li>
+<li>
+<p>Uso de módulos Terraform públicos é permitido, desde que compreendidos e documentados</p>
+</li>
+</ul>
+<p><strong>10.3 Acessibilidade e Inclusão</strong></p>
+<ul>
+<li>
+<p>Materiais disponibilizados em formatos acessíveis (markdown, PDF com estrutura)</p>
+</li>
+<li>
+<p>Trabalho em dupla/trio incentivado para colaboração e inclusão</p>
+</li>
+</ul>
+<hr />
+<p><strong>Anexo B – Descrição dos Três Projetos Práticos</strong></p>
+<p><strong>Projeto 1: Site Estático em S3 via Terraform</strong></p>
+<p><strong>Objetivo:</strong> Hospedar um site estático (HTML/CSS/JS) em bucket S3 usando Terraform.</p>
+<p><strong>Recursos AWS:</strong></p>
+<ul>
+<li>
+<p>Bucket S3 com website hosting habilitado</p>
+</li>
+<li>
+<p>Política de acesso público para leitura</p>
+</li>
+<li>
+<p>Outputs: URL do site estático</p>
+</li>
+</ul>
+<p><strong>Entregas:</strong></p>
+<ul>
+<li>
+<p>Código Terraform funcional (bucket.tf, variables.tf, outputs.tf)</p>
+</li>
+<li>
+<p>Arquivos do site estático (HTML/CSS/JS simples)</p>
+</li>
+<li>
+<p>Documentação: README com instruções de deploy</p>
+</li>
+</ul>
+<hr />
+<p><strong>Projeto 2: Aplicação Web em Docker + EC2 + CI/CD</strong></p>
+<p><strong>Objetivo:</strong> Implantar aplicação containerizada em EC2 via Terraform com pipeline de CI/CD.</p>
+<p><strong>Recursos AWS:</strong></p>
+<ul>
+<li>
+<p>VPC, Security Groups, instância EC2 (t2.micro/t3.micro)</p>
+</li>
+<li>
+<p>Aplicação web simples (API REST ou frontend) em Docker</p>
+</li>
+<li>
+<p>Pipeline CI/CD (GitHub Actions/GitLab CI) automatizando:</p>
+</li>
+<li>
+<p>Validação Terraform (fmt, validate, plan)</p>
+</li>
+<li>
+<p>Build e push da imagem Docker</p>
+</li>
+<li>
+<p>Deploy automatizado em EC2 (atualização do container)</p>
+</li>
+</ul>
+<p><strong>Entregas:</strong></p>
+<ul>
+<li>
+<p>Código Terraform completo (rede + computação)</p>
+</li>
+<li>
+<p>Dockerfile otimizado da aplicação</p>
+</li>
+<li>
+<p>Arquivo de configuração do pipeline CI/CD (.github/workflows ou .gitlab-ci.yml)</p>
+</li>
+<li>
+<p>Documentação: arquitetura e fluxo de deploy</p>
+</li>
+</ul>
+<hr />
+<p><strong>Projeto 3: API com Banco Gerenciado (RDS/DynamoDB)</strong></p>
+<p><strong>Objetivo:</strong> Desenvolver API que consome banco gerenciado na AWS, provisionado com Terraform.</p>
+<p><strong>Recursos AWS:</strong></p>
+<ul>
+<li>
+<p>EC2 para hospedar a API em Docker</p>
+</li>
+<li>
+<p>RDS (MySQL/Postgres micro) <em>ou</em> DynamoDB (tabela NoSQL)</p>
+</li>
+<li>
+<p>Security Groups configurados para comunicação segura</p>
+</li>
+<li>
+<p>CloudWatch Logs para monitoramento da aplicação</p>
+</li>
+<li>
+<p>Pipeline CI/CD automatizando deploy da API</p>
+</li>
+</ul>
+<p><strong>Entregas:</strong></p>
+<ul>
+<li>
+<p>Código Terraform para EC2 + banco + rede</p>
+</li>
+<li>
+<p>API funcional (Python/Node.js/Go) conectada ao banco</p>
+</li>
+<li>
+<p>Dockerfile da API</p>
+</li>
+<li>
+<p>Pipeline CI/CD configurado</p>
+</li>
+<li>
+<p>Documentação: modelo de dados, endpoints da API, variáveis de ambiente</p>
+</li>
+</ul>
+<hr />
+<p><strong>Aplicação Exemplo Base</strong></p>
+<p><strong>Tipo:</strong> API REST simples<br />
+<strong>Linguagem:</strong> Python (FastAPI) ou Node.js (Express)<br />
+<strong>Funcionalidades:</strong></p>
+<ul>
+<li>
+<p>Endpoint /health (health check)</p>
+</li>
+<li>
+<p>Endpoint /items (CRUD básico conectado a banco)</p>
+</li>
+<li>
+<p>Integração com S3 (upload/download opcional)</p>
+</li>
+<li>
+<p>Logs estruturados em JSON</p>
+</li>
+<li>
+<p>Configuração via variáveis de ambiente</p>
+</li>
+</ul>
+<p><strong>Requisitos técnicos:</strong></p>
+<ul>
+<li>
+<p>Dockerfile fornecido</p>
+</li>
+<li>
+<p>Testes automatizados básicos</p>
+</li>
+<li>
+<p>README com instruções</p>
+</li>
+</ul>
+<p>O repositório base será adaptado pelos estudantes para cada projeto prático.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar ao topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
