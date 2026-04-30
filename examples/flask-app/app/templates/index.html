@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Flask em EC2 — IAC AWS</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: {{ color }};
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card {
+      background: rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 40px 48px;
+      text-align: center;
+      color: white;
+      max-width: 560px;
+    }
+    h1 { font-size: 1.9rem; margin-bottom: 14px; }
+    .info { font-size: 1rem; line-height: 1.8; }
+    .tag {
+      display: inline-block;
+      background: #ff9900;
+      color: #232f3e;
+      font-weight: bold;
+      border-radius: 6px;
+      padding: 3px 10px;
+      margin-top: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🐳 Flask em EC2</h1>
+    <div class="info">
+      <p><strong>Ambiente:</strong> {{ env }}</p>
+      <p><strong>Hostname:</strong> {{ hostname }}</p>
+      <p>Provisionado com <strong>Terraform</strong> · Deploy via <strong>GitHub Actions</strong></p>
+    </div>
+    <div class="tag">Projeto 2 — IAC AWS</div>
+  </div>
+</body>
+</html>
