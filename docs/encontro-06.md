@@ -3,7 +3,7 @@
 ---
 
 **Duração:** 2h  
-**Bloco:** Projeto Prático 1  
+**Bloco:** Projeto Prático 01  
 **Projeto associado:** `projeto-01-s3-site-estatico/`
 
 ---
@@ -100,12 +100,13 @@ O `etag = filemd5(...)` força o Terraform a re-fazer o upload quando o arquivo 
 
 ---
 
-## Laboratório — Executando o Projeto 1
+## Laboratório — Executando o Projeto 01
 
 ---
 
 ```bash
-cd exemplos-treinamento-iac-aws/projeto-1-s3-site-estatico/terraform
+git clone https://github.com/uiuqM/treinamento-devops-aws-iac-epic
+cd projects/01/terraform
 
 terraform init
 
@@ -133,7 +134,7 @@ terraform state list  # lista recursos gerenciados
 ---
 ### Destruir ao final
 ```bash
-terraform destroy -var="bucket_name=iac-site-SEU-NOME-2024"
+terraform destroy
 ```
 
 ---
