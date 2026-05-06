@@ -1,0 +1,1 @@
+bucket_name = "projeto-01-iac-aws-uiuqm"
