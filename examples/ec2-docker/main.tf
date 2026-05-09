@@ -48,10 +48,10 @@ resource "aws_instance" "web" {
 
   user_data = <<-EOF
     #!/bin/bash
-    dnf update -y
-    dnf config-manager addrepo --from-repofile https://download.docker.com/linux/fedora/docker-ce.repo
-    dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-    systemctl enable --now docker
+    yum update -y
+    yum install -y docker
+    service docker start
+    systemctl enable docker
     docker run -p 80:5000 shirafelix/flask-app:v1.0
   EOF
 
