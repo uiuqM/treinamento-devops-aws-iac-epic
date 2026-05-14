@@ -1,0 +1,1685 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="DevOps e Infraestrutura como Código na AWS">
+      
+      
+        <meta name="author" content="uiuqM">
+      
+      
+        <link rel="canonical" href="https://uiuqm.github.io/treinamento-devops-aws-iac-epic/encontro-07/">
+      
+      
+        <link rel="prev" href="../encontro-06/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>encontro-07 - Treinamento DevOps AWS IaC</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#encontro-07-cicd-com-github-actions" class="md-skip">
+          Ir para o conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="Treinamento DevOps AWS IaC" class="md-header__button md-logo" aria-label="Treinamento DevOps AWS IaC" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Treinamento DevOps AWS IaC
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              encontro-07
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando a pesquisa
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../plano-de-ensino/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Ementa
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../encontro-01/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  encontro-01
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../encontro-02/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  encontro-02
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../encontro-03/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  encontro-03
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../encontro-04/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  encontro-04
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../encontro-05/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  encontro-05
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../encontro-06/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  encontro-06
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  encontro-07
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Treinamento DevOps AWS IaC" class="md-nav__button md-logo" aria-label="Treinamento DevOps AWS IaC" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Treinamento DevOps AWS IaC
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plano-de-ensino/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ementa
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../encontro-01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    encontro-01
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../encontro-02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    encontro-02
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../encontro-03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    encontro-03
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../encontro-04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    encontro-04
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../encontro-05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    encontro-05
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../encontro-06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    encontro-06
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    encontro-07
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    encontro-07
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivos-do-encontro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivos do Encontro
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roteiro-2h" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roteiro (2h)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conteudo-expositivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conteúdo Expositivo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conteúdo Expositivo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-ci-vs-cd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 CI vs. CD
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-e" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que é?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cicd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CI/CD
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visualizando" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visualizando
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-compoe-github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que compõe github actions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-e-configurada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como é configurada?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visualizando_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visualizando
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#events-workflow-triggers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Events (Workflow triggers)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#job-runners" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Job runners
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Actions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#72-github-actions-estrutura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 GitHub Actions — Estrutura
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-secrets-no-github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 Secrets no GitHub Actions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-walkthrough-do-deployyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4 Walkthrough do deploy.yml
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laboratorio-deploy-automatico-com-github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Laboratório — Deploy Automático com GitHub Actions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Laboratório — Deploy Automático com GitHub Actions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#passo-1-subir-a-infraestrutura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 1: Subir a infraestrutura
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passo-2-preparar-a-ec2-para-o-deploy-automatico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 2: Preparar a EC2 para o deploy automático
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passo-3-configurar-secrets-no-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 3: Configurar Secrets no GitHub
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passo-4-fazer-uma-alteracao-e-observar-o-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 4: Fazer uma alteração e observar o pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passo-5-verificar-o-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 5: Verificar o deploy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#destruir-ao-final" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Destruir ao final
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-para-casa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Atividade para Casa
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referências
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivos-do-encontro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivos do Encontro
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roteiro-2h" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roteiro (2h)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conteudo-expositivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conteúdo Expositivo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conteúdo Expositivo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-ci-vs-cd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 CI vs. CD
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-e" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que é?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cicd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CI/CD
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visualizando" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visualizando
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-compoe-github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que compõe github actions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-e-configurada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como é configurada?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visualizando_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visualizando
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#events-workflow-triggers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Events (Workflow triggers)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#job-runners" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Job runners
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Actions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#72-github-actions-estrutura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 GitHub Actions — Estrutura
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-secrets-no-github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 Secrets no GitHub Actions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-walkthrough-do-deployyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4 Walkthrough do deploy.yml
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laboratorio-deploy-automatico-com-github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Laboratório — Deploy Automático com GitHub Actions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Laboratório — Deploy Automático com GitHub Actions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#passo-1-subir-a-infraestrutura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 1: Subir a infraestrutura
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passo-2-preparar-a-ec2-para-o-deploy-automatico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 2: Preparar a EC2 para o deploy automático
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passo-3-configurar-secrets-no-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 3: Configurar Secrets no GitHub
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passo-4-fazer-uma-alteracao-e-observar-o-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 4: Fazer uma alteração e observar o pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passo-5-verificar-o-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 5: Verificar o deploy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#destruir-ao-final" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Destruir ao final
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-para-casa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Atividade para Casa
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referências
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="encontro-07-cicd-com-github-actions">Encontro 07 — CI/CD com GitHub Actions<a class="headerlink" href="#encontro-07-cicd-com-github-actions" title="Permanent link">&para;</a></h1>
+<hr />
+<p><strong>Duração:</strong> 2h<br />
+<strong>Bloco:</strong> Projeto Prático 2<br />
+<strong>Projeto associado:</strong> <code>projeto-2-ec2-flask-cicd/</code></p>
+<hr />
+<h2 id="objetivos-do-encontro">Objetivos do Encontro<a class="headerlink" href="#objetivos-do-encontro" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Entender o conceito de CI/CD e sua importância</li>
+<li>Configurar o pipeline do Projeto 2 (GitHub Actions)</li>
+<li>Realizar um deploy end-to-end automatizado: push → build → EC2</li>
+<li>Entender secrets e segurança em pipelines</li>
+</ul>
+<hr />
+<h2 id="roteiro-2h">Roteiro (2h)<a class="headerlink" href="#roteiro-2h" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Tempo</th>
+<th>Atividade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0:00 – 0:10</td>
+<td>Revisão + dúvidas</td>
+</tr>
+<tr>
+<td>0:10 – 0:40</td>
+<td>Exposição: CI/CD — conceitos e ferramentas</td>
+</tr>
+<tr>
+<td>0:40 – 1:00</td>
+<td>Walkthrough do deploy.yml do Projeto 2</td>
+</tr>
+<tr>
+<td>1:00 – 1:50</td>
+<td>Laboratório: configurar secrets + primeiro deploy automático</td>
+</tr>
+<tr>
+<td>1:50 – 2:00</td>
+<td>Síntese e revisão do Projeto 2</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="conteudo-expositivo">Conteúdo Expositivo<a class="headerlink" href="#conteudo-expositivo" title="Permanent link">&para;</a></h2>
+<h3 id="71-ci-vs-cd">7.1 CI vs. CD<a class="headerlink" href="#71-ci-vs-cd" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Sigla</th>
+<th>Nome</th>
+<th>O que faz</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CI</strong></td>
+<td>Continuous Integration</td>
+<td>Build + testes automáticos a cada push</td>
+</tr>
+<tr>
+<td><strong>CD</strong></td>
+<td>Continuous Delivery</td>
+<td>Artefato sempre pronto para deploy (manual)</td>
+</tr>
+<tr>
+<td><strong>CD</strong></td>
+<td>Continuous Deployment</td>
+<td>Deploy automático em produção a cada push</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>CI/CD</strong>
+- Detecta erros cedo (antes de chegar em produção)
+- Elimina deploys manuais propensos a erro
+- Feedback rápido para o desenvolvedor
+- Histórico auditável de cada deploy</p>
+<hr />
+<h2 id="o-que-e">O que é?<a class="headerlink" href="#o-que-e" title="Permanent link">&para;</a></h2>
+<p>GitHub Actions é uma plataforma de integração e entrega contínua (CI/CD) que permite automatizar a sua compilação, testar e integrar sua pipeline de implantação. É possível criar fluxos de trabalho que criam e testam cada pull request no seu repositório, ou implantar pull requests mesclados em produção.</p>
+<hr />
+<h2 id="cicd">CI/CD<a class="headerlink" href="#cicd" title="Permanent link">&para;</a></h2>
+<p><img alt="" src="../img/image13.png" /></p>
+<hr />
+<h2 id="visualizando">Visualizando<a class="headerlink" href="#visualizando" title="Permanent link">&para;</a></h2>
+<p><img alt="" src="../img/image14.png" />
+De maneira geral podemos seguir essa seguinte estrutura.</p>
+<hr />
+<h2 id="o-que-compoe-github-actions">O que compõe github actions<a class="headerlink" href="#o-que-compoe-github-actions" title="Permanent link">&para;</a></h2>
+<p><img alt="" src="../img/image15.png" /></p>
+<hr />
+<h2 id="como-e-configurada">Como é configurada?<a class="headerlink" href="#como-e-configurada" title="Permanent link">&para;</a></h2>
+<p><img alt="" src="../img/Pasted image 20241218153135.png" /></p>
+<p>Exemplo da action utilizada para servir esse material:
+https://github.com/uiuqM/treinamento-devops-aws-iac-epic/blob/main/.github/workflows/main.yaml</p>
+<hr />
+<h2 id="visualizando_1">Visualizando<a class="headerlink" href="#visualizando_1" title="Permanent link">&para;</a></h2>
+<p><img alt="" src="../img/image16.png" /></p>
+<hr />
+<h2 id="events-workflow-triggers">Events (Workflow triggers)<a class="headerlink" href="#events-workflow-triggers" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Relacionado ao repositório</th>
+<th>Outros</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>push (commit)</td>
+<td>workflow_dispatch<br>(trigger manual)</td>
+</tr>
+<tr>
+<td>pull_request (opened, closed...)</td>
+<td>repository_dispatch<br>(REST API)</td>
+</tr>
+<tr>
+<td>create (branch ou tag)</td>
+<td>scheduled<br>(Workflow agendado)</td>
+</tr>
+<tr>
+<td>fork (repo teve fork)</td>
+<td>workflow_call<br>(Chamado por outros workflows)</td>
+</tr>
+<tr>
+<td>issues (issue aberta, deletada....)</td>
+<td></td>
+</tr>
+<tr>
+<td>issues_comment (issue ou PR comment)</td>
+<td></td>
+</tr>
+<tr>
+<td>watch (repo favoritado)</td>
+<td></td>
+</tr>
+<tr>
+<td>discussion (dicussion criada, deletada ...)</td>
+<td></td>
+</tr>
+<tr>
+<td>....</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="job-runners">Job runners<a class="headerlink" href="#job-runners" title="Permanent link">&para;</a></h2>
+<p><img alt="" src="../img/image17.png" /></p>
+<hr />
+<h2 id="actions">Actions<a class="headerlink" href="#actions" title="Permanent link">&para;</a></h2>
+<p>Uma aplicação que performa uma tarefa (complexa) repetitiva.</p>
+<p>Exemplos:
+https://github.com/actions/checkout
+https://github.com/marketplace?type=actions</p>
+<hr />
+<h3 id="72-github-actions-estrutura">7.2 GitHub Actions — Estrutura<a class="headerlink" href="#72-github-actions-estrutura" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Nome do Workflow</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">on</span><span class="p">:</span><span class="w">                      </span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="nt">jobs</span><span class="p">:</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">nome-do-job</span><span class="p">:</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Passo customizado</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;Olá do pipeline!&quot;</span>
+</code></pre></div>
+<hr />
+<h3 id="73-secrets-no-github-actions">7.3 Secrets no GitHub Actions<a class="headerlink" href="#73-secrets-no-github-actions" title="Permanent link">&para;</a></h3>
+<p>Nunca coloque credenciais diretamente no YAML. Use <strong>Secrets</strong>:</p>
+<hr />
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># No YAML: referencie com ${{ secrets.NOME }}</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy via SSH</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">appleboy/ssh-action@v1.0.0</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">with</span><span class="p">:</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.EC2_HOST }}</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="nt">key</span><span class="p">:</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.EC2_SSH_KEY }}</span>
+</code></pre></div>
+<p>Configurar em: <strong>GitHub → Repo → Settings → Secrets and variables → Actions</strong></p>
+<hr />
+<h3 id="84-walkthrough-do-deployyml">8.4 Walkthrough do deploy.yml<a class="headerlink" href="#84-walkthrough-do-deployyml" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CI/CD — Build e Deploy em EC2</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nt">on</span><span class="p">:</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="nt">jobs</span><span class="p">:</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="nt">build-and-deploy</span><span class="p">:</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build da imagem Docker</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker build -t flask-iac-app ./app</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy na EC2</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">appleboy/ssh-action@v1.0.0</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">          </span><span class="nt">host</span><span class="p">:</span><span class="w">     </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.EC2_HOST }}</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">          </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ec2-user</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">          </span><span class="nt">key</span><span class="p">:</span><span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.EC2_SSH_KEY }}</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">          </span><span class="nt">script</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">            </span><span class="no">docker stop flask-app 2&gt;/dev/null || true</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">            </span><span class="no">docker rm   flask-app 2&gt;/dev/null || true</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">            </span><span class="no">cd /home/ec2-user/app</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">            </span><span class="no">git pull origin main</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">            </span><span class="no">docker build -t flask-iac-app ./projeto-2-ec2-flask-cicd/app</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">            </span><span class="no">docker run -d --name flask-app --restart unless-stopped \</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="w">              </span><span class="no">-p 5000:5000 -e APP_ENV=producao -e APP_COLOR=#1a1a2e \</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="w">              </span><span class="no">flask-iac-app</span>
+</code></pre></div>
+<hr />
+<h2 id="laboratorio-deploy-automatico-com-github-actions">Laboratório — Deploy Automático com GitHub Actions<a class="headerlink" href="#laboratorio-deploy-automatico-com-github-actions" title="Permanent link">&para;</a></h2>
+<h3 id="passo-1-subir-a-infraestrutura">Passo 1: Subir a infraestrutura<a class="headerlink" href="#passo-1-subir-a-infraestrutura" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span>terraform<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>terraform<span class="w"> </span>apply
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1"># Anote o IP público da EC2</span>
+</code></pre></div>
+<h3 id="passo-2-preparar-a-ec2-para-o-deploy-automatico">Passo 2: Preparar a EC2 para o deploy automático<a class="headerlink" href="#passo-2-preparar-a-ec2-para-o-deploy-automatico" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ssh<span class="w"> </span>-i<span class="w"> </span>~/.ssh/id_rsa<span class="w"> </span>ec2-user@&lt;IP&gt;
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># Clonar o repositório dentro da EC2</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/SEU_USUARIO/SEU_REPO.git<span class="w"> </span>app
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nb">exit</span>
+</code></pre></div>
+<h3 id="passo-3-configurar-secrets-no-github">Passo 3: Configurar Secrets no GitHub<a class="headerlink" href="#passo-3-configurar-secrets-no-github" title="Permanent link">&para;</a></h3>
+<p>Acesse: <strong>GitHub → Repo → Settings → Secrets and variables → Actions</strong></p>
+<table>
+<thead>
+<tr>
+<th>Secret</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>EC2_HOST</code></td>
+<td>IP público da EC2 (output do Terraform)</td>
+</tr>
+<tr>
+<td><code>EC2_SSH_KEY</code></td>
+<td>Conteúdo completo de <code>~/.ssh/id_rsa</code> (chave privada)</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Para copiar a chave privada</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>cat<span class="w"> </span>~/.ssh/id_rsa
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1"># Cole todo o conteúdo (incluindo -----BEGIN e -----END-----)</span>
+</code></pre></div>
+<h3 id="passo-4-fazer-uma-alteracao-e-observar-o-pipeline">Passo 4: Fazer uma alteração e observar o pipeline<a class="headerlink" href="#passo-4-fazer-uma-alteracao-e-observar-o-pipeline" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># No app.py, altere a mensagem ou adicione uma rota nova</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/versao&#39;</span><span class="p">)</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">versao</span><span class="p">():</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;versao&#39;</span><span class="p">:</span> <span class="s1">&#39;2.0&#39;</span><span class="p">,</span> <span class="s1">&#39;encontro&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>git<span class="w"> </span>add<span class="w"> </span>.<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;feat: adiciona rota /versao&quot;</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+</code></pre></div>
+<p>Acompanhe em: <strong>GitHub → Repo → Actions</strong> → observe os steps em tempo real.</p>
+<h3 id="passo-5-verificar-o-deploy">Passo 5: Verificar o deploy<a class="headerlink" href="#passo-5-verificar-o-deploy" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>curl<span class="w"> </span>http://&lt;IP&gt;:5000/versao
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="c1"># Deve retornar: {&quot;versao&quot;: &quot;2.0&quot;, &quot;encontro&quot;: 8}</span>
+</code></pre></div>
+<h3 id="destruir-ao-final">Destruir ao final<a class="headerlink" href="#destruir-ao-final" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">cd</span><span class="w"> </span>terraform<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>terraform<span class="w"> </span>destroy
+</code></pre></div>
+<hr />
+<h2 id="atividade-para-casa">Atividade para Casa<a class="headerlink" href="#atividade-para-casa" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Adicione um step de <strong>validação</strong> antes do deploy: <code>terraform fmt -check</code> e <code>terraform validate</code></li>
+<li>Configure o pipeline para rodar também em Pull Requests (mas sem o step de deploy)</li>
+<li>Pesquisa: o que é <strong>GitHub Environments</strong> e como adicionar aprovação manual antes do deploy em produção?</li>
+</ol>
+<hr />
+<h2 id="referencias">Referências<a class="headerlink" href="#referencias" title="Permanent link">&para;</a></h2>
+<ul>
+<li>GitHub. <em>GitHub Actions Documentation.</em> https://docs.github.com/en/actions</li>
+<li>GitHub. <em>Encrypted Secrets.</em> https://docs.github.com/en/actions/security-guides/encrypted-secrets</li>
+<li>appleboy/ssh-action. https://github.com/appleboy/ssh-action</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar ao topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
